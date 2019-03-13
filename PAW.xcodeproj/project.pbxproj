@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		727FC1612779F34DA977E6DB /* Pods_PAW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2D282446240F350D669CDB /* Pods_PAW.framework */; };
+		7E0E2D5E22310C3800BF76FE /* SegueLeftToRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E2D5D22310C3800BF76FE /* SegueLeftToRight.swift */; };
 		7E0F4C7322234A550062BA03 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F4C7222234A550062BA03 /* background.png */; };
 		7E0F4C7522239F7C0062BA03 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F4C7422239F7C0062BA03 /* RegisterViewController.swift */; };
+		7E23D4B42238F44900FA9417 /* PresentingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D4B32238F44900FA9417 /* PresentingController.swift */; };
+		7E23D4B62238F79700FA9417 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D4B52238F79700FA9417 /* ProfileViewController.swift */; };
+		7E23D4B82238FAA200FA9417 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D4B72238FAA200FA9417 /* HistoryViewController.swift */; };
 		7E9E451F221E4C080014723D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E451E221E4C080014723D /* AppDelegate.swift */; };
 		7E9E4521221E4C080014723D /* ViewControllerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E4520221E4C080014723D /* ViewControllerMap.swift */; };
 		7E9E4524221E4C080014723D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E9E4522221E4C080014723D /* Main.storyboard */; };
@@ -26,8 +30,12 @@
 /* Begin PBXFileReference section */
 		0998DA8D131A6387FBC8E73F /* Pods-PAW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PAW.release.xcconfig"; path = "Target Support Files/Pods-PAW/Pods-PAW.release.xcconfig"; sourceTree = "<group>"; };
 		0A2D282446240F350D669CDB /* Pods_PAW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PAW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E0E2D5D22310C3800BF76FE /* SegueLeftToRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueLeftToRight.swift; sourceTree = "<group>"; };
 		7E0F4C7222234A550062BA03 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		7E0F4C7422239F7C0062BA03 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		7E23D4B32238F44900FA9417 /* PresentingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingController.swift; sourceTree = "<group>"; };
+		7E23D4B52238F79700FA9417 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7E23D4B72238FAA200FA9417 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		7E9E451B221E4C080014723D /* PAW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PAW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9E451E221E4C080014723D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E9E4520221E4C080014723D /* ViewControllerMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMap.swift; sourceTree = "<group>"; };
@@ -101,12 +109,15 @@
 				7E9E453A221F46990014723D /* ViewController.swift */,
 				7E9E4520221E4C080014723D /* ViewControllerMap.swift */,
 				7E0F4C7422239F7C0062BA03 /* RegisterViewController.swift */,
+				7E23D4B52238F79700FA9417 /* ProfileViewController.swift */,
+				7E23D4B72238FAA200FA9417 /* HistoryViewController.swift */,
 				7E9E4522221E4C080014723D /* Main.storyboard */,
 				7E9E4528221E4C090014723D /* Assets.xcassets */,
 				7E9E452A221E4C090014723D /* LaunchScreen.storyboard */,
 				7E9E452D221E4C090014723D /* Info.plist */,
 				7E9E4525221E4C080014723D /* PAW.xcdatamodeld */,
 				7E9E4536221E50C20014723D /* SegueRightToLeft.swift */,
+				7E0E2D5D22310C3800BF76FE /* SegueLeftToRight.swift */,
 				7E9E4538221E54FF0014723D /* GoogleService-Info.plist */,
 			);
 			path = PAW;
@@ -125,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				7E9E453D221F476E0014723D /* Constants.swift */,
+				7E23D4B32238F44900FA9417 /* PresentingController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -239,14 +251,18 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PAW/Pods-PAW-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,10 +279,14 @@
 			files = (
 				7E9E453B221F46990014723D /* ViewController.swift in Sources */,
 				7E9E4527221E4C080014723D /* PAW.xcdatamodeld in Sources */,
+				7E23D4B62238F79700FA9417 /* ProfileViewController.swift in Sources */,
 				7E0F4C7522239F7C0062BA03 /* RegisterViewController.swift in Sources */,
 				7E9E4521221E4C080014723D /* ViewControllerMap.swift in Sources */,
+				7E23D4B82238FAA200FA9417 /* HistoryViewController.swift in Sources */,
 				7E9E4537221E50C20014723D /* SegueRightToLeft.swift in Sources */,
 				7E9E451F221E4C080014723D /* AppDelegate.swift in Sources */,
+				7E0E2D5E22310C3800BF76FE /* SegueLeftToRight.swift in Sources */,
+				7E23D4B42238F44900FA9417 /* PresentingController.swift in Sources */,
 				7E9E453E221F476E0014723D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

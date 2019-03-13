@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class ViewController: UIViewController, UITextFieldDelegate{
   
@@ -21,6 +23,20 @@ class ViewController: UIViewController, UITextFieldDelegate{
     // Do any additional setup after loading the view, typically from a nib.
     self.HideKeyboard()
     
+  }
+  @IBAction func login(_ sender: Any) {
+    Auth.auth().signIn(withEmail: self.EmailTextField.text!, password: self.PasswordTextField.text!, completion: {(user, error) in 
+      if user != nil {
+        self.performSegue(withIdentifier: "GotoMain", sender: self)
+      }
+      if error != nil {
+        print("error")
+        let alertController = UIAlertController(title: "Login in failed", message:
+          "Incorrect Password!", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        self.present(alertController, animated: true, completion: nil)
+      }
+    })
   }
   
   override open var shouldAutorotate: Bool {
