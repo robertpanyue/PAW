@@ -14,6 +14,8 @@
 		7E23D4B42238F44900FA9417 /* PresentingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D4B32238F44900FA9417 /* PresentingController.swift */; };
 		7E23D4B62238F79700FA9417 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D4B52238F79700FA9417 /* ProfileViewController.swift */; };
 		7E23D4B82238FAA200FA9417 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D4B72238FAA200FA9417 /* HistoryViewController.swift */; };
+		7E751B6F224D3D8000F23696 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E751B6E224D3D8000F23696 /* CalendarViewController.swift */; };
+		7E751B71224D41A700F23696 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E751B70224D41A700F23696 /* CoreLocation.framework */; };
 		7E9E451F221E4C080014723D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E451E221E4C080014723D /* AppDelegate.swift */; };
 		7E9E4521221E4C080014723D /* ViewControllerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E4520221E4C080014723D /* ViewControllerMap.swift */; };
 		7E9E4524221E4C080014723D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E9E4522221E4C080014723D /* Main.storyboard */; };
@@ -36,7 +38,8 @@
 		7E23D4B32238F44900FA9417 /* PresentingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingController.swift; sourceTree = "<group>"; };
 		7E23D4B52238F79700FA9417 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7E23D4B72238FAA200FA9417 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		7E23D4B92239DD7100FA9417 /* PAW.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PAW.entitlements; sourceTree = "<group>"; };
+		7E751B6E224D3D8000F23696 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		7E751B70224D41A700F23696 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7E9E451B221E4C080014723D /* PAW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PAW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9E451E221E4C080014723D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E9E4520221E4C080014723D /* ViewControllerMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMap.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E751B71224D41A700F23696 /* CoreLocation.framework in Frameworks */,
 				7E9E4535221E4C150014723D /* MapKit.framework in Frameworks */,
 				727FC1612779F34DA977E6DB /* Pods_PAW.framework in Frameworks */,
 			);
@@ -104,7 +108,6 @@
 		7E9E451D221E4C080014723D /* PAW */ = {
 			isa = PBXGroup;
 			children = (
-				7E23D4B92239DD7100FA9417 /* PAW.entitlements */,
 				7E041FD42221063D00D3A288 /* assets */,
 				7E9E453C221F47560014723D /* Utils */,
 				7E9E451E221E4C080014723D /* AppDelegate.swift */,
@@ -113,6 +116,7 @@
 				7E0F4C7422239F7C0062BA03 /* RegisterViewController.swift */,
 				7E23D4B52238F79700FA9417 /* ProfileViewController.swift */,
 				7E23D4B72238FAA200FA9417 /* HistoryViewController.swift */,
+				7E751B6E224D3D8000F23696 /* CalendarViewController.swift */,
 				7E9E4522221E4C080014723D /* Main.storyboard */,
 				7E9E4528221E4C090014723D /* Assets.xcassets */,
 				7E9E452A221E4C090014723D /* LaunchScreen.storyboard */,
@@ -128,6 +132,7 @@
 		7E9E4533221E4C150014723D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E751B70224D41A700F23696 /* CoreLocation.framework */,
 				7E9E4534221E4C150014723D /* MapKit.framework */,
 				0A2D282446240F350D669CDB /* Pods_PAW.framework */,
 			);
@@ -289,6 +294,7 @@
 				7E9E4521221E4C080014723D /* ViewControllerMap.swift in Sources */,
 				7E23D4B82238FAA200FA9417 /* HistoryViewController.swift in Sources */,
 				7E9E4537221E50C20014723D /* SegueRightToLeft.swift in Sources */,
+				7E751B6F224D3D8000F23696 /* CalendarViewController.swift in Sources */,
 				7E9E451F221E4C080014723D /* AppDelegate.swift in Sources */,
 				7E0E2D5E22310C3800BF76FE /* SegueLeftToRight.swift in Sources */,
 				7E23D4B42238F44900FA9417 /* PresentingController.swift in Sources */,
