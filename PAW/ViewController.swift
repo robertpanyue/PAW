@@ -22,13 +22,17 @@ class ViewController: UIViewController, UITextFieldDelegate{
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     self.HideKeyboard()
-    
+    if Auth.auth().currentUser != nil {
+      Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (timer) in
+        self.performSegue(withIdentifier: "GotoMain", sender: nil)
+      }
+    }
   }
   @IBAction func login(_ sender: Any) {
     Auth.auth().signIn(withEmail: self.EmailTextField.text!, password: self.PasswordTextField.text!, completion: {(user, error) in 
       if user != nil {
         self.performSegue(withIdentifier: "GotoMain", sender: self)
-      }
+      } 
       if error != nil {
         print("error")
         let alertController = UIAlertController(title: "Login in failed", message:

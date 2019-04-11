@@ -8,13 +8,24 @@
 
 import Foundation
 import UIKit
-
+import FirebaseAuth
 class ProfileViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.    
   }
   
+  @IBAction func logout(_ sender: Any) {
+    do {
+      try Auth.auth().signOut()
+    } catch let error {
+      print(error)
+    }
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let login = storyboard.instantiateViewController(withIdentifier: "LoginPage")
+    self.present(login, animated: true, completion: nil)
+    
+  }
   @IBAction func backButton(_ sender: Any){
     let transition: CATransition = CATransition()
     transition.duration = 0.25

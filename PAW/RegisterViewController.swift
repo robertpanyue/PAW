@@ -36,6 +36,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         print("error")
       }
     })
+    saveUserInfoFirebase();
   }
   
   override func viewDidDisappear(_ animated: Bool) {
@@ -49,7 +50,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     ref = Database.database().reference()
     let newUser = [
       "uuid" : uuid,
-      "dogName" : dogName.text!,
+      "phone" : dogName.text!,
       "firstName" : firstName.text!,
       "lastName" : lastName.text!
     ] 

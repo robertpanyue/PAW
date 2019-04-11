@@ -16,6 +16,10 @@
 		7E23D4B82238FAA200FA9417 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D4B72238FAA200FA9417 /* HistoryViewController.swift */; };
 		7E751B6F224D3D8000F23696 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E751B6E224D3D8000F23696 /* CalendarViewController.swift */; };
 		7E751B71224D41A700F23696 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E751B70224D41A700F23696 /* CoreLocation.framework */; };
+		7E8E85ED225FCE4B005CF241 /* ToastCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8E85E0225FCC2F005CF241 /* ToastCenter.swift */; };
+		7E8E85EE225FCE4B005CF241 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8E85E4225FCC2F005CF241 /* Toast.swift */; };
+		7E8E85EF225FCE4B005CF241 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8E85E2225FCC2F005CF241 /* ToastView.swift */; };
+		7E8E85F0225FCE4B005CF241 /* ToastWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8E85E1225FCC2F005CF241 /* ToastWindow.swift */; };
 		7E9E451F221E4C080014723D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E451E221E4C080014723D /* AppDelegate.swift */; };
 		7E9E4521221E4C080014723D /* ViewControllerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E4520221E4C080014723D /* ViewControllerMap.swift */; };
 		7E9E4524221E4C080014723D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E9E4522221E4C080014723D /* Main.storyboard */; };
@@ -40,6 +44,11 @@
 		7E23D4B72238FAA200FA9417 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		7E751B6E224D3D8000F23696 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7E751B70224D41A700F23696 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7E8E85E0225FCC2F005CF241 /* ToastCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastCenter.swift; sourceTree = "<group>"; };
+		7E8E85E1225FCC2F005CF241 /* ToastWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastWindow.swift; sourceTree = "<group>"; };
+		7E8E85E2225FCC2F005CF241 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		7E8E85E3225FCC2F005CF241 /* Toaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toaster.h; sourceTree = "<group>"; };
+		7E8E85E4225FCC2F005CF241 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		7E9E451B221E4C080014723D /* PAW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PAW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9E451E221E4C080014723D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E9E4520221E4C080014723D /* ViewControllerMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMap.swift; sourceTree = "<group>"; };
@@ -87,6 +96,18 @@
 			path = assets;
 			sourceTree = "<group>";
 		};
+		7E8E85F1225FCE76005CF241 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				7E8E85E4225FCC2F005CF241 /* Toast.swift */,
+				7E8E85E0225FCC2F005CF241 /* ToastCenter.swift */,
+				7E8E85E3225FCC2F005CF241 /* Toaster.h */,
+				7E8E85E2225FCC2F005CF241 /* ToastView.swift */,
+				7E8E85E1225FCC2F005CF241 /* ToastWindow.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		7E9E4512221E4C080014723D = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +146,7 @@
 				7E9E4536221E50C20014723D /* SegueRightToLeft.swift */,
 				7E0E2D5D22310C3800BF76FE /* SegueLeftToRight.swift */,
 				7E9E4538221E54FF0014723D /* GoogleService-Info.plist */,
+				7E8E85F1225FCE76005CF241 /* Toast */,
 			);
 			path = PAW;
 			sourceTree = "<group>";
@@ -291,14 +313,18 @@
 				7E9E4527221E4C080014723D /* PAW.xcdatamodeld in Sources */,
 				7E23D4B62238F79700FA9417 /* ProfileViewController.swift in Sources */,
 				7E0F4C7522239F7C0062BA03 /* RegisterViewController.swift in Sources */,
+				7E8E85EF225FCE4B005CF241 /* ToastView.swift in Sources */,
 				7E9E4521221E4C080014723D /* ViewControllerMap.swift in Sources */,
 				7E23D4B82238FAA200FA9417 /* HistoryViewController.swift in Sources */,
 				7E9E4537221E50C20014723D /* SegueRightToLeft.swift in Sources */,
 				7E751B6F224D3D8000F23696 /* CalendarViewController.swift in Sources */,
+				7E8E85ED225FCE4B005CF241 /* ToastCenter.swift in Sources */,
 				7E9E451F221E4C080014723D /* AppDelegate.swift in Sources */,
 				7E0E2D5E22310C3800BF76FE /* SegueLeftToRight.swift in Sources */,
 				7E23D4B42238F44900FA9417 /* PresentingController.swift in Sources */,
 				7E9E453E221F476E0014723D /* Constants.swift in Sources */,
+				7E8E85EE225FCE4B005CF241 /* Toast.swift in Sources */,
+				7E8E85F0225FCE4B005CF241 /* ToastWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

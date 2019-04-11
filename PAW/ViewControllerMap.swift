@@ -13,12 +13,14 @@ import Firebase
 
 class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
   @IBOutlet weak var Map: MKMapView!
-  
+  @IBOutlet weak var startButton: UIButton!
   
   var manager:CLLocationManager!
   var database: DatabaseReference?
   var myLocation: [CLLocation] = []
+  var myLocations: [CLLocation] = []
   var postData = [String]()
+  var startStatus = false
   
   @IBAction func peeMarkButton(_ sender: Any) {
     let annotation = MKPointAnnotation()
@@ -33,16 +35,23 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Do any additional setup after loading the view, typically from a nib.
     manager = CLLocationManager()
     manager.delegate = self
+    Map.delegate = self
     manager.desiredAccuracy = kCLLocationAccuracyBest
     Map.showsUserLocation = true
-    checkLocationService();
+    Map.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
+    manager.requestAlwaysAuthorization()
+    manager.startUpdatingLocation()
+    Map.showsUserLocation = true
     
-    database = Database.database().reference();
-    _ = database?.child("user").observe(.childChanged, with: { (snapshot) in
-      let postDict = snapshot.value as? String
-      self.postData.append(postDict!)  
-      print(self.postData)
-    })
+
+    //checkLocationService();
+    
+//    database = Database.database().reference();
+//    _ = database?.child("user").observe(.childChanged, with: { (snapshot) in
+//      let postDict = snapshot.value as? String
+//      self.postData.append(postDict!)  
+//      print(self.postData)
+//    })
     
   }
   
@@ -68,30 +77,73 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
       
     }
   }
+  @IBAction func startTracking(_ sender: Any) {
+    if (!startStatus){
+      startStatus = true
+      startButton.setTitle("stop", for: .normal)
+      
+      let annotation = MKPointAnnotation()
+      annotation.coordinate = CLLocationCoordinate2D(latitude: myLocation[0].coordinate.latitude, longitude: myLocation[0].coordinate.longitude)
+      annotation.title = "Start Location"
+      Map.addAnnotation(annotation)
+      
+    } else {
+      startStatus = false
+      startButton.setTitle("start", for: .normal)
+      
+      let annotation = MKPointAnnotation()
+      annotation.coordinate = CLLocationCoordinate2D(latitude: myLocation[0].coordinate.latitude, longitude: myLocation[0].coordinate.longitude)
+      annotation.title = "End Location"
+      Map.addAnnotation(annotation)
+      //Toast Message
+      Toast(text: "Your route is saving to the history", delay:0, duration: 3).show()
+      let appearence = ToastView.appearance()
+      appearence.backgroundColor = UIColor.gray
+      appearence.textColor = UIColor.black
+      appearence.font = UIFont.boldSystemFont(ofSize: 14)
+      appearence.cornerRadius = 15
+      
+    }
+  }
   
   func locationManager(_ manager:CLLocationManager, didUpdateLocations locations:[CLLocation]) {
-    print("=-=============================================")
+
     if myLocation.count == 0 {
       myLocation.insert(locations[0], at: 0)
     } else {
       myLocation[0] = locations[0]
     }
+    //show friends location
+    var ref: DatabaseReference!
+    ref = Database.database().reference()
+    let users = ref.child("users")
     
-    print(myLocation)
-    print("=----------------------------------------------")
+    //travelling path
     let spanX = 0.007
     let spanY = 0.007
     let newRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: spanX, longitudeDelta: spanY))
     Map.setRegion(newRegion, animated: true)
-    if (myLocation.count > 1){
-      let sourceIndex = myLocation.count - 1
-      let destinationIndex = myLocation.count - 2
-      let c1 = myLocation[sourceIndex].coordinate
-      let c2 = myLocation[destinationIndex].coordinate
+    myLocations.append(locations[0] as CLLocation)
+    if (myLocations.count > 1 && startStatus){
+      let sourceIndex = myLocations.count - 1
+      let destinationIndex = myLocations.count - 2
+      let c1 = myLocations[sourceIndex].coordinate
+      let c2 = myLocations[destinationIndex].coordinate
       var a = [c1, c2]
       let polyline = MKPolyline(coordinates: &a, count: a.count)
       Map.addOverlay(polyline)
-      
     }
   }
+  
+  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    
+    if overlay is MKPolyline {
+      let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+      polylineRenderer.strokeColor = UIColor.blue
+      polylineRenderer.lineWidth = 4
+      return polylineRenderer
+    }
+    return MKPolylineRenderer();
+  }
+  
 }
