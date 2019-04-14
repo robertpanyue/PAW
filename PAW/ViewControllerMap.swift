@@ -21,9 +21,10 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
   var myLocations: [CLLocation] = []
   var postData = [User]()
   var startStatus = false
-  var annotations: [MKPointAnnotation] = []
+  var annotationsArray: [MKPointAnnotation] = []
   var annotationsUser: [String] = []
-  
+  var startLati: Double = 0.0
+  var startLong: Double = 0.0
   @IBAction func peeMarkButton(_ sender: Any) {
     if (myLocation.count > 0 && startStatus){
       let annotation = MKPointAnnotation()
@@ -54,6 +55,7 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
     Map.showsUserLocation = true
     
 
+    
     checkLocationService();
     
     //get other users location
@@ -83,11 +85,15 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
           print(latitude)
           print(longtitude)
           print("first create ++++++++++++++++++++++++++++++++++")
-          let annotation = MKPointAnnotation()
-          annotation.coordinate = CLLocationCoordinate2D.init(latitude: Double(latitude) as! CLLocationDegrees, longitude: Double(longtitude) as! CLLocationDegrees)
-          annotation.title = user.firstName
-          self.annotations.append(annotation)
-          self.Map.addAnnotation(annotation)
+          
+          let annotation3 = MKPointAnnotation()
+          annotation3.coordinate = CLLocationCoordinate2D.init(latitude: Double(latitude) as! CLLocationDegrees, longitude: Double(longtitude) as! CLLocationDegrees)
+          annotation3.title = user.firstName
+          self.Map.addAnnotation(annotation3)
+          self.annotationsArray.append(annotation3)
+          self.annotationsUser.append(user.uid!)
+//          print(self.Map.annotations.count)
+//          print(self.Map.annotations[0])
         }
         
         var checkExist = false
@@ -103,15 +109,34 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
             print(longtitude)
             print("updata create +_+_+_+_+_+_+_+_+_+_+_+__+_+")
             
-            self.annotations[0].coordinate = CLLocationCoordinate2D.init(latitude: Double(latitude) as! CLLocationDegrees, longitude: Double(longtitude) as! CLLocationDegrees)
+            let index = self.annotationsUser.firstIndex(of: element.uid!)
+            self.annotationsArray[index!].coordinate = CLLocationCoordinate2D.init(latitude: Double(latitude) as! CLLocationDegrees, longitude: Double(longtitude) as! CLLocationDegrees)
             checkExist = true
             print("updating ")
+            print(self.annotationsArray.count)
+            print(self.postData.count)
           } 
         }
         
         if(!checkExist && !user.uid!.isEqual(Auth.auth().currentUser?.uid)){
           self.postData.append(user);
+          let fullNameArr = user.location!.components(separatedBy: " ")
+          
+          let latitude: String = fullNameArr[0]
+          let longtitude: String = fullNameArr[1]
+          print(latitude)
+          print(longtitude)
+          print("second third create ++++++++++++++++++++++++++++++++++")
+          
+          let annotation4 = MKPointAnnotation()
+          annotation4.coordinate = CLLocationCoordinate2D.init(latitude: Double(latitude) as! CLLocationDegrees, longitude: Double(longtitude) as! CLLocationDegrees)
+          annotation4.title = user.firstName
+          self.Map.addAnnotation(annotation4)
+          self.annotationsArray.append(annotation4)
+          self.annotationsUser.append(user.uid!)
+          
         }
+        
       }      
     })
     
@@ -150,6 +175,9 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
       annotation.title = "Start Location"
       Map.addAnnotation(annotation)
       
+      startLati = myLocation[0].coordinate.latitude
+      startLong = myLocation[0].coordinate.longitude
+      
     } else {
       startStatus = false
       startButton.setTitle("start", for: .normal)
@@ -158,6 +186,26 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
       annotation1.coordinate = CLLocationCoordinate2D(latitude: myLocation[0].coordinate.latitude, longitude: myLocation[0].coordinate.longitude)
       annotation1.title = "End Location"
       Map.addAnnotation(annotation1)
+      
+      var ref: DatabaseReference!
+      ref = Database.database().reference().child("history").child(Auth.auth().currentUser!.uid)
+      let newUser = [
+        "uid": Auth.auth().currentUser!.uid,
+        "startLocationLati": startLati,
+        "startLocationLong": startLong,
+        "endLocationLati": myLocation[0].coordinate.latitude,
+        "endLocationLong": myLocation[0].coordinate.longitude
+      ] as [AnyHashable : Any] 
+      ref.updateChildValues(newUser as [AnyHashable : Any], withCompletionBlock: {(error, ref) in 
+        if error != nil {
+          print("error")
+          return
+        }
+      })
+      
+      startLati = 0
+      startLong = 0
+      
       
       DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
         self.Map.removeAnnotations(self.Map.annotations)
