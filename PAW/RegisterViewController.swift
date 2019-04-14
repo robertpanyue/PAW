@@ -35,25 +35,24 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
       if error != nil {
         print("error")
       }
+      
+      var ref: DatabaseReference!
+      ref = Database.database().reference().child("users").child((user?.user.uid)!)
+      let newUser = [
+        "uid": user?.user.uid,
+        "phone" : self.dogName.text!,
+        "firstName" : self.firstName.text!,
+        "lastName" : self.lastName.text!,
+        "location": "0 0"
+      ] 
+      ref.updateChildValues(newUser as [AnyHashable : Any], withCompletionBlock: {(error, ref) in 
+        if error != nil {
+          print("error")
+          return
+        }
+      })
     })
-    saveUserInfoFirebase();
   }
   
-  override func viewDidDisappear(_ animated: Bool) {
-    //saveUserInfoFirebase();
-  }
-  
-  fileprivate func saveUserInfoFirebase() {
-    let user = Auth.auth().currentUser!
-    let uuid = UUID().uuidString
-    var ref: DatabaseReference!
-    ref = Database.database().reference()
-    let newUser = [
-      "uuid" : uuid,
-      "phone" : dogName.text!,
-      "firstName" : firstName.text!,
-      "lastName" : lastName.text!
-    ] 
-    ref.child("users").child(user.uid).setValue(newUser)
-  }
+
 }

@@ -19,15 +19,25 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
   var database: DatabaseReference?
   var myLocation: [CLLocation] = []
   var myLocations: [CLLocation] = []
-  var postData = [String]()
+  var postData = [User]()
   var startStatus = false
+  var annotations: [MKPointAnnotation] = []
+  var annotationsUser: [String] = []
   
   @IBAction func peeMarkButton(_ sender: Any) {
-    let annotation = MKPointAnnotation()
-    annotation.coordinate = CLLocationCoordinate2D(latitude: myLocation[0].coordinate.latitude, longitude: myLocation[0].coordinate.longitude)
-    annotation.title = "PEE"
-    Map.addAnnotation(annotation)
-    
+    if (myLocation.count > 0 && startStatus){
+      let annotation = MKPointAnnotation()
+      annotation.coordinate = CLLocationCoordinate2D(latitude: myLocation[0].coordinate.latitude, longitude: myLocation[0].coordinate.longitude)
+      annotation.title = "PEE"
+      Map.addAnnotation(annotation)
+    } else {
+      Toast(text: "You need to start record the traveling path!", delay:0, duration: 3).show()
+      let appearence = ToastView.appearance()
+      appearence.backgroundColor = UIColor.gray
+      appearence.textColor = UIColor.black
+      appearence.font = UIFont.boldSystemFont(ofSize: 14)
+      appearence.cornerRadius = 15
+    }
   }
   
   override func viewDidLoad() {
@@ -44,14 +54,66 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
     Map.showsUserLocation = true
     
 
-    //checkLocationService();
+    checkLocationService();
     
-//    database = Database.database().reference();
-//    _ = database?.child("user").observe(.childChanged, with: { (snapshot) in
-//      let postDict = snapshot.value as? String
-//      self.postData.append(postDict!)  
-//      print(self.postData)
+    //get other users location
+    let database = Database.database().reference();
+//    database.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+//        for child in snapshot.children{
+//          print(child as Any)
+//        }
 //    })
+
+    database.child("users").observe(.childChanged, with: { (snapshot) in
+      if let dictionary = snapshot.value as? [String: AnyObject] {
+        let user = User()
+        user.firstName = dictionary["firstName"] as? String
+        user.lastName = dictionary["lastName"] as? String
+        user.location = dictionary["location"] as? String
+        user.phone = dictionary["phone"] as? String
+        user.uid = dictionary["uid"] as? String
+
+        if (self.postData.count < 1 && !user.uid!.isEqual(Auth.auth().currentUser?.uid)) {
+
+          self.postData.append(user);
+          let fullNameArr = user.location!.components(separatedBy: " ")
+          
+          let latitude: String = fullNameArr[0]
+          let longtitude: String = fullNameArr[1]
+          print(latitude)
+          print(longtitude)
+          print("first create ++++++++++++++++++++++++++++++++++")
+          let annotation = MKPointAnnotation()
+          annotation.coordinate = CLLocationCoordinate2D.init(latitude: Double(latitude) as! CLLocationDegrees, longitude: Double(longtitude) as! CLLocationDegrees)
+          annotation.title = user.firstName
+          self.annotations.append(annotation)
+          self.Map.addAnnotation(annotation)
+        }
+        
+        var checkExist = false
+        
+        for element in self.postData{
+          if(user.uid!.isEqual(element.uid) && !user.uid!.isEqual(Auth.auth().currentUser?.uid)){
+            element.location = user.location;
+            let fullNameArr = user.location!.components(separatedBy: " ")
+            
+            let latitude: String = fullNameArr[0]
+            let longtitude: String = fullNameArr[1]
+            print(latitude)
+            print(longtitude)
+            print("updata create +_+_+_+_+_+_+_+_+_+_+_+__+_+")
+            
+            self.annotations[0].coordinate = CLLocationCoordinate2D.init(latitude: Double(latitude) as! CLLocationDegrees, longitude: Double(longtitude) as! CLLocationDegrees)
+            checkExist = true
+            print("updating ")
+          } 
+        }
+        
+        if(!checkExist && !user.uid!.isEqual(Auth.auth().currentUser?.uid)){
+          self.postData.append(user);
+        }
+      }      
+    })
     
   }
   
@@ -77,6 +139,7 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
       
     }
   }
+  
   @IBAction func startTracking(_ sender: Any) {
     if (!startStatus){
       startStatus = true
@@ -91,10 +154,17 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
       startStatus = false
       startButton.setTitle("start", for: .normal)
       
-      let annotation = MKPointAnnotation()
-      annotation.coordinate = CLLocationCoordinate2D(latitude: myLocation[0].coordinate.latitude, longitude: myLocation[0].coordinate.longitude)
-      annotation.title = "End Location"
-      Map.addAnnotation(annotation)
+      let annotation1 = MKPointAnnotation()
+      annotation1.coordinate = CLLocationCoordinate2D(latitude: myLocation[0].coordinate.latitude, longitude: myLocation[0].coordinate.longitude)
+      annotation1.title = "End Location"
+      Map.addAnnotation(annotation1)
+      
+      DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        self.Map.removeAnnotations(self.Map.annotations)
+        self.Map.removeOverlays(self.Map.overlays)
+        print("Removing all staff on the map")
+      }
+      
       //Toast Message
       Toast(text: "Your route is saving to the history", delay:0, duration: 3).show()
       let appearence = ToastView.appearance()
@@ -102,7 +172,6 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
       appearence.textColor = UIColor.black
       appearence.font = UIFont.boldSystemFont(ofSize: 14)
       appearence.cornerRadius = 15
-      
     }
   }
   
@@ -113,17 +182,27 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
     } else {
       myLocation[0] = locations[0]
     }
+    myLocations.append(locations[0] as CLLocation)
+    
     //show friends location
     var ref: DatabaseReference!
     ref = Database.database().reference()
-    let users = ref.child("users")
+    let usersRef = ref.child("users")
+    let uid = (Auth.auth().currentUser?.uid)!
+    let location = myLocations[myLocations.count-1]
+    let latitute = location.coordinate.latitude.description
+    let longitude = location.coordinate.longitude.description
+    let stringLocation = latitute + " " + longitude
+    usersRef.child(uid).updateChildValues(["location": stringLocation])
+    
+    
     
     //travelling path
     let spanX = 0.007
     let spanY = 0.007
     let newRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: spanX, longitudeDelta: spanY))
     Map.setRegion(newRegion, animated: true)
-    myLocations.append(locations[0] as CLLocation)
+    
     if (myLocations.count > 1 && startStatus){
       let sourceIndex = myLocations.count - 1
       let destinationIndex = myLocations.count - 2

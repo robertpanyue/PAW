@@ -25,6 +25,10 @@ class HistoryViewController: UIViewController{
     self.dismiss(animated: true, completion: nil)
   }
   
-
+  @IBAction func shwoCalendar(_ sender: Any) {
+    UIApplication.shared.open(NSURL(string: "calshow://")! as URL)
+    
+  }
+  
 
 }
