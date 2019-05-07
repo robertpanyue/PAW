@@ -11,26 +11,129 @@ import MapKit
 import CoreLocation
 import Firebase
 
-class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate{
   @IBOutlet weak var Map: MKMapView!
   @IBOutlet weak var startButton: UIButton!
+  @IBOutlet weak var centerUserButton: UIButton!
   
   var manager:CLLocationManager!
   var database: DatabaseReference?
+  //current location
   var myLocation: [CLLocation] = []
   var myLocations: [CLLocation] = []
   var postData = [User]()
   var startStatus = false
   var annotationsArray: [MKPointAnnotation] = []
+  var peeLocations: String = ""
+  var poopLocations: String = ""
   var annotationsUser: [String] = []
   var startLati: Double = 0.0
   var startLong: Double = 0.0
+  var region = false;
+  
+  @IBAction func centerUser(_ sender: Any) {
+    self.Map.setUserTrackingMode( MKUserTrackingMode.follow, animated: true)
+  }
+  
+  @IBAction func searchButton(_ sender: Any)
+  {
+    let searchController = UISearchController(searchResultsController: nil)
+    searchController.searchBar.delegate = self
+    present(searchController, animated: true, completion: nil)
+  }
+  
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+  {
+    //Ignoring user
+    UIApplication.shared.beginIgnoringInteractionEvents()
+    
+    //Activity Indicator
+    let activityIndicator = UIActivityIndicatorView()
+    activityIndicator.style = UIActivityIndicatorView.Style.gray
+    activityIndicator.center = self.view.center
+    activityIndicator.hidesWhenStopped = true
+    activityIndicator.startAnimating()
+    
+    self.view.addSubview(activityIndicator)
+    
+    //Hide search bar
+    searchBar.resignFirstResponder()
+    dismiss(animated: true, completion: nil)
+    
+    //Create the search request
+    let searchRequest = MKLocalSearch.Request()
+    searchRequest.naturalLanguageQuery = searchBar.text
+    
+    let activeSearch = MKLocalSearch(request: searchRequest)
+    
+    activeSearch.start { (response, error) in
+      
+      activityIndicator.stopAnimating()
+      UIApplication.shared.endIgnoringInteractionEvents()
+      
+      if response == nil
+      {
+        print("ERROR")
+      }
+      else
+      {
+        
+        //Remove annotations
+        let annotations = self.Map.annotations
+        self.Map.removeAnnotations(annotations)
+        
+        //Getting data
+        let latitude = response?.boundingRegion.center.latitude
+        let longitude = response?.boundingRegion.center.longitude
+        
+        //Create annotation
+        let annotation = MKPointAnnotation()
+        annotation.title = searchBar.text
+        annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
+        self.Map.addAnnotation(annotation)
+        
+        //Zooming in on annotation
+        let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
+        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        self.Map.setRegion(region, animated: false)
+      }
+      
+    }
+  }
+  
+  
+  
+  
   @IBAction func peeMarkButton(_ sender: Any) {
     if (myLocation.count > 0 && startStatus){
       let annotation = MKPointAnnotation()
       annotation.coordinate = CLLocationCoordinate2D(latitude: myLocation[0].coordinate.latitude, longitude: myLocation[0].coordinate.longitude)
+      peeLocations = String(myLocation[0].coordinate.latitude) + " " + String(myLocation[0].coordinate.longitude) 
       annotation.title = "PEE"
       Map.addAnnotation(annotation)
+    } else {
+      Toast(text: "You need to start record the traveling path!", delay:0, duration: 3).show()
+      let appearence = ToastView.appearance()
+      appearence.backgroundColor = UIColor.gray
+      appearence.textColor = UIColor.black
+      appearence.font = UIFont.boldSystemFont(ofSize: 14)
+      appearence.cornerRadius = 15
+    }
+  }
+  
+  
+  
+  
+  
+  
+  @IBAction func poopMarkButton(_ sender: Any) {
+    if (myLocation.count > 0 && startStatus){
+      let annotation4 = MKPointAnnotation()
+      annotation4.coordinate = CLLocationCoordinate2D(latitude: myLocation[0].coordinate.latitude, longitude: myLocation[0].coordinate.longitude)
+      poopLocations = String(myLocation[0].coordinate.latitude) + " " + String(myLocation[0].coordinate.longitude) 
+      annotation4.title = "POOP"
+      Map.addAnnotation(annotation4)
     } else {
       Toast(text: "You need to start record the traveling path!", delay:0, duration: 3).show()
       let appearence = ToastView.appearance()
@@ -44,6 +147,7 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    createDirectory();
     manager = CLLocationManager()
     manager.delegate = self
     Map.delegate = self
@@ -167,6 +271,7 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
   
   @IBAction func startTracking(_ sender: Any) {
     if (!startStatus){
+      region = true;
       startStatus = true
       startButton.setTitle("stop", for: .normal)
       
@@ -179,6 +284,7 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
       startLong = myLocation[0].coordinate.longitude
       
     } else {
+      region = false;
       startStatus = false
       startButton.setTitle("start", for: .normal)
       
@@ -187,14 +293,36 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
       annotation1.title = "End Location"
       Map.addAnnotation(annotation1)
       
+      //set region
+      let newRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: (startLati + myLocation[0].coordinate.latitude) / 2, longitude: (startLong + myLocation[0].coordinate.longitude) / 2), span: MKCoordinateSpan(latitudeDelta: fabs(startLati - myLocation[0].coordinate.latitude) * 1.2, longitudeDelta: fabs(myLocation[0].coordinate.longitude - startLong) * 1.2))
+    
+      Map.setRegion(newRegion, animated: false)
+      
+      //same history image
+      DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        let image = self.captureScreenshot();
+        self.saveImageDocumentDirectory(image: image)
+        print("save to photo")
+      }
+
+      //get the current date and time 
+      let currentDateTime = Date()
+      let formatter = DateFormatter()
+      formatter.timeStyle = .medium
+      formatter.dateStyle = .long
+      let date = formatter.string(from: currentDateTime)
+      
       var ref: DatabaseReference!
       ref = Database.database().reference().child("history").child(Auth.auth().currentUser!.uid)
       let newUser = [
         "uid": Auth.auth().currentUser!.uid,
         "startLocationLati": startLati,
         "startLocationLong": startLong,
+        "peeLocation": peeLocations,
+        "poopLocation": poopLocations,
         "endLocationLati": myLocation[0].coordinate.latitude,
-        "endLocationLong": myLocation[0].coordinate.longitude
+        "endLocationLong": myLocation[0].coordinate.longitude,
+        "date": date
       ] as [AnyHashable : Any] 
       ref.updateChildValues(newUser as [AnyHashable : Any], withCompletionBlock: {(error, ref) in 
         if error != nil {
@@ -207,7 +335,7 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
       startLong = 0
       
       
-      DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
         self.Map.removeAnnotations(self.Map.annotations)
         self.Map.removeOverlays(self.Map.overlays)
         print("Removing all staff on the map")
@@ -222,6 +350,46 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
       appearence.cornerRadius = 15
     }
   }
+    
+  func captureScreenshot() -> UIImage {
+    let layer = UIApplication.shared.keyWindow!.layer
+    let scale = UIScreen.main.scale
+    // Creates UIImage of same size as view
+    UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
+    layer.render(in: UIGraphicsGetCurrentContext()!)
+    let screenshot = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    print("----------------")
+    print(type(of: screenshot))
+    return screenshot
+  }
+  
+  func createDirectory(){
+    let fileManager = FileManager.default
+    let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("customDirectory")
+    if !fileManager.fileExists(atPath: paths){
+      try! fileManager.createDirectory(atPath: paths, withIntermediateDirectories: true, attributes: nil)
+    }else{
+      print("Already dictionary created.")
+    }
+  }
+  
+  func getDirectoryPath() -> String {
+    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+    let documentsDirectory = paths[0]; 
+    return documentsDirectory
+  }
+  
+  func saveImageDocumentDirectory(image:UIImage ){
+    let fileManager = FileManager.default
+    let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("history.jpg")
+    print(paths)
+    
+    let imageData = image.jpegData(compressionQuality: 1.0); 
+    fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
+  }
+
+  
   
   func locationManager(_ manager:CLLocationManager, didUpdateLocations locations:[CLLocation]) {
 
@@ -230,6 +398,11 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
     } else {
       myLocation[0] = locations[0]
     }
+    
+//    let defaults = UserDefaults(suiteName: "group.PAWIOS")
+//    defaults?.set(20.1, forKey: "passingLocation")
+//    defaults?.synchronize()
+    
     myLocations.append(locations[0] as CLLocation)
     
     //show friends location
@@ -246,10 +419,13 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     
     //travelling path
-    let spanX = 0.007
-    let spanY = 0.007
-    let newRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: spanX, longitudeDelta: spanY))
-    Map.setRegion(newRegion, animated: true)
+    if (region){
+      let spanX = 0.007
+      let spanY = 0.007
+      let newRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: spanX, longitudeDelta: spanY))
+      Map.setRegion(newRegion, animated: true)
+    }
+
     
     if (myLocations.count > 1 && startStatus){
       let sourceIndex = myLocations.count - 1
@@ -274,3 +450,4 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate, CLLocationManagerD
   }
   
 }
+

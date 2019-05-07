@@ -9,18 +9,23 @@
 import UIKit
 import CoreData
 import Firebase
+import CoreLocation
+import MapKit
+import HealthKit
+import WatchConnectivity
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
   var window: UIWindow?
-
+  let healthStore = HKHealthStore()
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
 
     FirebaseApp.configure()
     Database.database().isPersistenceEnabled = true
+    
     return true
   }
 
@@ -78,7 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }()
 
   // MARK: - Core Data Saving support
-
   func saveContext () {
       let context = persistentContainer.viewContext
       if context.hasChanges {
@@ -93,5 +97,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
   }
 
+  func applicationShouldRequestHealthAuthorization(_ application: UIApplication) {
+    self.healthStore.handleAuthorizationForExtension {success, error in
+    }
+  }
 }
 

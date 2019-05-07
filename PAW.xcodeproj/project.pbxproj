@@ -14,7 +14,6 @@
 		7E23D4B42238F44900FA9417 /* PresentingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D4B32238F44900FA9417 /* PresentingController.swift */; };
 		7E23D4B62238F79700FA9417 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D4B52238F79700FA9417 /* ProfileViewController.swift */; };
 		7E23D4B82238FAA200FA9417 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D4B72238FAA200FA9417 /* HistoryViewController.swift */; };
-		7E751B6F224D3D8000F23696 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E751B6E224D3D8000F23696 /* CalendarViewController.swift */; };
 		7E751B71224D41A700F23696 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E751B70224D41A700F23696 /* CoreLocation.framework */; };
 		7E8E85ED225FCE4B005CF241 /* ToastCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8E85E0225FCC2F005CF241 /* ToastCenter.swift */; };
 		7E8E85EE225FCE4B005CF241 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8E85E4225FCC2F005CF241 /* Toast.swift */; };
@@ -32,7 +31,63 @@
 		7E9E4539221E54FF0014723D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E9E4538221E54FF0014723D /* GoogleService-Info.plist */; };
 		7E9E453B221F46990014723D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E453A221F46990014723D /* ViewController.swift */; };
 		7E9E453E221F476E0014723D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E453D221F476E0014723D /* Constants.swift */; };
+		7EFFB6A8226A4696009DEB7D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EFFB6A6226A4696009DEB7D /* Interface.storyboard */; };
+		7EFFB6AA226A4697009DEB7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EFFB6A9226A4697009DEB7D /* Assets.xcassets */; };
+		7EFFB6B1226A4698009DEB7D /* PAW Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7EFFB6B0226A4698009DEB7D /* PAW Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7EFFB6B6226A4698009DEB7D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFFB6B5226A4698009DEB7D /* InterfaceController.swift */; };
+		7EFFB6B8226A4698009DEB7D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFFB6B7226A4698009DEB7D /* ExtensionDelegate.swift */; };
+		7EFFB6BA226A4698009DEB7D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFFB6B9226A4698009DEB7D /* NotificationController.swift */; };
+		7EFFB6BC226A4698009DEB7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EFFB6BB226A4698009DEB7D /* Assets.xcassets */; };
+		7EFFB6C1226A4698009DEB7D /* PAW Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7EFFB6A4226A4696009DEB7D /* PAW Watch.app */; };
+		7EFFB6D1226C3267009DEB7D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFFB6D0226C3267009DEB7D /* MapKit.framework */; };
+		7EFFB6D3226C3E1E009DEB7D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFFB6D2226C3E1E009DEB7D /* CoreLocation.framework */; };
+		7EFFB6D4226C5324009DEB7D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFFB6D0226C3267009DEB7D /* MapKit.framework */; };
+		7EFFB6DF2273EEE0009DEB7D /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFFB6DE2273EEE0009DEB7D /* HistoryTableViewController.swift */; };
+		7EFFB6E3227D38D0009DEB7D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFFB6E2227D38D0009DEB7D /* HealthKit.framework */; };
+		7EFFB6E5227D49A3009DEB7D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFFB6E4227D49A3009DEB7D /* HealthKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7EFFB6B2226A4698009DEB7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E9E4513221E4C080014723D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7EFFB6AF226A4698009DEB7D;
+			remoteInfo = "PAW Watch Extension";
+		};
+		7EFFB6BF226A4698009DEB7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E9E4513221E4C080014723D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7EFFB6A3226A4696009DEB7D;
+			remoteInfo = "PAW Watch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7EFFB6C7226A4698009DEB7D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7EFFB6B1226A4698009DEB7D /* PAW Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EFFB6C9226A4698009DEB7D /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				7EFFB6C1226A4698009DEB7D /* PAW Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0998DA8D131A6387FBC8E73F /* Pods-PAW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PAW.release.xcconfig"; path = "Target Support Files/Pods-PAW/Pods-PAW.release.xcconfig"; sourceTree = "<group>"; };
@@ -43,7 +98,6 @@
 		7E23D4B32238F44900FA9417 /* PresentingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingController.swift; sourceTree = "<group>"; };
 		7E23D4B52238F79700FA9417 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7E23D4B72238FAA200FA9417 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		7E751B6E224D3D8000F23696 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7E751B70224D41A700F23696 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7E8E85E0225FCC2F005CF241 /* ToastCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastCenter.swift; sourceTree = "<group>"; };
 		7E8E85E1225FCC2F005CF241 /* ToastWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastWindow.swift; sourceTree = "<group>"; };
@@ -64,6 +118,25 @@
 		7E9E4538221E54FF0014723D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7E9E453A221F46990014723D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7E9E453D221F476E0014723D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7EFFB6A4226A4696009DEB7D /* PAW Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PAW Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EFFB6A7226A4696009DEB7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		7EFFB6A9226A4697009DEB7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7EFFB6AB226A4697009DEB7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EFFB6B0226A4698009DEB7D /* PAW Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PAW Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EFFB6B5226A4698009DEB7D /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		7EFFB6B7226A4698009DEB7D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		7EFFB6B9226A4698009DEB7D /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		7EFFB6BB226A4698009DEB7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7EFFB6BD226A4698009DEB7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EFFB6BE226A4698009DEB7D /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		7EFFB6D0226C3267009DEB7D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.2.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
+		7EFFB6D2226C3E1E009DEB7D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.2.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		7EFFB6DB226D7F59009DEB7D /* PAW.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PAW.entitlements; sourceTree = "<group>"; };
+		7EFFB6DC226D7FAB009DEB7D /* PAW Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PAW Watch Extension.entitlements"; sourceTree = "<group>"; };
+		7EFFB6DD226D7FB7009DEB7D /* PAW Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PAW Watch.entitlements"; sourceTree = "<group>"; };
+		7EFFB6DE2273EEE0009DEB7D /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		7EFFB6E2227D38D0009DEB7D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		7EFFB6E4227D49A3009DEB7D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		E5372C4C1FA28DB9C0E54687 /* Pods-PAW.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PAW.debug.xcconfig"; path = "Target Support Files/Pods-PAW/Pods-PAW.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,8 +146,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E751B71224D41A700F23696 /* CoreLocation.framework in Frameworks */,
+				7EFFB6E3227D38D0009DEB7D /* HealthKit.framework in Frameworks */,
 				7E9E4535221E4C150014723D /* MapKit.framework in Frameworks */,
 				727FC1612779F34DA977E6DB /* Pods_PAW.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EFFB6AD226A4698009DEB7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EFFB6E5227D49A3009DEB7D /* HealthKit.framework in Frameworks */,
+				7EFFB6D4226C5324009DEB7D /* MapKit.framework in Frameworks */,
+				7EFFB6D3226C3E1E009DEB7D /* CoreLocation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EFFB6CC226C310F009DEB7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EFFB6D1226C3267009DEB7D /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +206,8 @@
 			isa = PBXGroup;
 			children = (
 				7E9E451D221E4C080014723D /* PAW */,
+				7EFFB6A5226A4696009DEB7D /* PAW Watch */,
+				7EFFB6B4226A4698009DEB7D /* PAW Watch Extension */,
 				7E9E451C221E4C080014723D /* Products */,
 				7E9E4533221E4C150014723D /* Frameworks */,
 				5C932B790FDFC71D97935E36 /* Pods */,
@@ -124,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				7E9E451B221E4C080014723D /* PAW.app */,
+				7EFFB6A4226A4696009DEB7D /* PAW Watch.app */,
+				7EFFB6B0226A4698009DEB7D /* PAW Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,6 +227,7 @@
 		7E9E451D221E4C080014723D /* PAW */ = {
 			isa = PBXGroup;
 			children = (
+				7EFFB6DB226D7F59009DEB7D /* PAW.entitlements */,
 				7E041FD42221063D00D3A288 /* assets */,
 				7E9E453C221F47560014723D /* Utils */,
 				7E9E451E221E4C080014723D /* AppDelegate.swift */,
@@ -139,7 +236,7 @@
 				7E0F4C7422239F7C0062BA03 /* RegisterViewController.swift */,
 				7E23D4B52238F79700FA9417 /* ProfileViewController.swift */,
 				7E23D4B72238FAA200FA9417 /* HistoryViewController.swift */,
-				7E751B6E224D3D8000F23696 /* CalendarViewController.swift */,
+				7EFFB6DE2273EEE0009DEB7D /* HistoryTableViewController.swift */,
 				7E9E4522221E4C080014723D /* Main.storyboard */,
 				7E8E85F222607351005CF241 /* User.swift */,
 				7E9E4528221E4C090014723D /* Assets.xcassets */,
@@ -157,6 +254,10 @@
 		7E9E4533221E4C150014723D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EFFB6E4227D49A3009DEB7D /* HealthKit.framework */,
+				7EFFB6E2227D38D0009DEB7D /* HealthKit.framework */,
+				7EFFB6D2226C3E1E009DEB7D /* CoreLocation.framework */,
+				7EFFB6D0226C3267009DEB7D /* MapKit.framework */,
 				7E751B70224D41A700F23696 /* CoreLocation.framework */,
 				7E9E4534221E4C150014723D /* MapKit.framework */,
 				0A2D282446240F350D669CDB /* Pods_PAW.framework */,
@@ -173,6 +274,31 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		7EFFB6A5226A4696009DEB7D /* PAW Watch */ = {
+			isa = PBXGroup;
+			children = (
+				7EFFB6DD226D7FB7009DEB7D /* PAW Watch.entitlements */,
+				7EFFB6A6226A4696009DEB7D /* Interface.storyboard */,
+				7EFFB6A9226A4697009DEB7D /* Assets.xcassets */,
+				7EFFB6AB226A4697009DEB7D /* Info.plist */,
+			);
+			path = "PAW Watch";
+			sourceTree = "<group>";
+		};
+		7EFFB6B4226A4698009DEB7D /* PAW Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7EFFB6DC226D7FAB009DEB7D /* PAW Watch Extension.entitlements */,
+				7EFFB6B5226A4698009DEB7D /* InterfaceController.swift */,
+				7EFFB6B7226A4698009DEB7D /* ExtensionDelegate.swift */,
+				7EFFB6B9226A4698009DEB7D /* NotificationController.swift */,
+				7EFFB6BB226A4698009DEB7D /* Assets.xcassets */,
+				7EFFB6BD226A4698009DEB7D /* Info.plist */,
+				7EFFB6BE226A4698009DEB7D /* PushNotificationPayload.apns */,
+			);
+			path = "PAW Watch Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,15 +311,52 @@
 				7E9E4518221E4C080014723D /* Frameworks */,
 				7E9E4519221E4C080014723D /* Resources */,
 				9403D504EAE4ED59DAEAF19F /* [CP] Embed Pods Frameworks */,
+				7EFFB6C9226A4698009DEB7D /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7EFFB6C0226A4698009DEB7D /* PBXTargetDependency */,
 			);
 			name = PAW;
 			productName = PAW;
 			productReference = 7E9E451B221E4C080014723D /* PAW.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7EFFB6A3226A4696009DEB7D /* PAW Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EFFB6C8226A4698009DEB7D /* Build configuration list for PBXNativeTarget "PAW Watch" */;
+			buildPhases = (
+				7EFFB6A2226A4696009DEB7D /* Resources */,
+				7EFFB6C7226A4698009DEB7D /* Embed App Extensions */,
+				7EFFB6CC226C310F009DEB7D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7EFFB6B3226A4698009DEB7D /* PBXTargetDependency */,
+			);
+			name = "PAW Watch";
+			productName = "PAW Watch";
+			productReference = 7EFFB6A4226A4696009DEB7D /* PAW Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		7EFFB6AF226A4698009DEB7D /* PAW Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EFFB6C6226A4698009DEB7D /* Build configuration list for PBXNativeTarget "PAW Watch Extension" */;
+			buildPhases = (
+				7EFFB6AC226A4698009DEB7D /* Sources */,
+				7EFFB6AD226A4698009DEB7D /* Frameworks */,
+				7EFFB6AE226A4698009DEB7D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PAW Watch Extension";
+			productName = "PAW Watch Extension";
+			productReference = 7EFFB6B0226A4698009DEB7D /* PAW Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -201,18 +364,47 @@
 		7E9E4513221E4C080014723D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Yue Pan";
 				TargetAttributes = {
 					7E9E451A221E4C080014723D = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 							com.apple.HealthKit = {
-								enabled = 0;
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					7EFFB6A3226A4696009DEB7D = {
+						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					7EFFB6AF226A4698009DEB7D = {
+						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes.watchos.extension = {
+								enabled = 1;
+							};
+							com.apple.HealthKit.watchos = {
+								enabled = 1;
 							};
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -235,6 +427,8 @@
 			projectRoot = "";
 			targets = (
 				7E9E451A221E4C080014723D /* PAW */,
+				7EFFB6A3226A4696009DEB7D /* PAW Watch */,
+				7EFFB6AF226A4698009DEB7D /* PAW Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -249,6 +443,23 @@
 				7E9E4539221E54FF0014723D /* GoogleService-Info.plist in Resources */,
 				7E9E4529221E4C090014723D /* Assets.xcassets in Resources */,
 				7E9E4524221E4C080014723D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EFFB6A2226A4696009DEB7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EFFB6AA226A4697009DEB7D /* Assets.xcassets in Resources */,
+				7EFFB6A8226A4696009DEB7D /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EFFB6AE226A4698009DEB7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EFFB6BC226A4698009DEB7D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,18 +532,41 @@
 				7E23D4B82238FAA200FA9417 /* HistoryViewController.swift in Sources */,
 				7E8E85F322607351005CF241 /* User.swift in Sources */,
 				7E9E4537221E50C20014723D /* SegueRightToLeft.swift in Sources */,
-				7E751B6F224D3D8000F23696 /* CalendarViewController.swift in Sources */,
 				7E8E85ED225FCE4B005CF241 /* ToastCenter.swift in Sources */,
 				7E9E451F221E4C080014723D /* AppDelegate.swift in Sources */,
 				7E0E2D5E22310C3800BF76FE /* SegueLeftToRight.swift in Sources */,
 				7E23D4B42238F44900FA9417 /* PresentingController.swift in Sources */,
+				7EFFB6DF2273EEE0009DEB7D /* HistoryTableViewController.swift in Sources */,
 				7E9E453E221F476E0014723D /* Constants.swift in Sources */,
 				7E8E85EE225FCE4B005CF241 /* Toast.swift in Sources */,
 				7E8E85F0225FCE4B005CF241 /* ToastWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7EFFB6AC226A4698009DEB7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EFFB6BA226A4698009DEB7D /* NotificationController.swift in Sources */,
+				7EFFB6B8226A4698009DEB7D /* ExtensionDelegate.swift in Sources */,
+				7EFFB6B6226A4698009DEB7D /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7EFFB6B3226A4698009DEB7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7EFFB6AF226A4698009DEB7D /* PAW Watch Extension */;
+			targetProxy = 7EFFB6B2226A4698009DEB7D /* PBXContainerItemProxy */;
+		};
+		7EFFB6C0226A4698009DEB7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7EFFB6A3226A4696009DEB7D /* PAW Watch */;
+			targetProxy = 7EFFB6BF226A4698009DEB7D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7E9E4522221E4C080014723D /* Main.storyboard */ = {
@@ -349,6 +583,14 @@
 				7E9E452B221E4C090014723D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7EFFB6A6226A4696009DEB7D /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7EFFB6A7226A4696009DEB7D /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -412,6 +654,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -466,6 +709,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -475,6 +719,7 @@
 			baseConfigurationReference = E5372C4C1FA28DB9C0E54687 /* Pods-PAW.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PAW/PAW.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7URW88W466;
@@ -486,7 +731,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = YuePan.PAW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -496,6 +741,7 @@
 			baseConfigurationReference = 0998DA8D131A6387FBC8E73F /* Pods-PAW.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PAW/PAW.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7URW88W466;
@@ -507,8 +753,104 @@
 				PRODUCT_BUNDLE_IDENTIFIER = YuePan.PAW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		7EFFB6C2226A4698009DEB7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "PAW Watch/PAW Watch.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7URW88W466;
+				IBSC_MODULE = PAW_Watch_Extension;
+				INFOPLIST_FILE = "PAW Watch/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = YuePan.PAW.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+			};
+			name = Debug;
+		};
+		7EFFB6C3226A4698009DEB7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "PAW Watch/PAW Watch.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7URW88W466;
+				IBSC_MODULE = PAW_Watch_Extension;
+				INFOPLIST_FILE = "PAW Watch/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = YuePan.PAW.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+			};
+			name = Release;
+		};
+		7EFFB6C4226A4698009DEB7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "PAW Watch Extension/PAW Watch Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7URW88W466;
+				INFOPLIST_FILE = "PAW Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = YuePan.PAW.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+			};
+			name = Debug;
+		};
+		7EFFB6C5226A4698009DEB7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "PAW Watch Extension/PAW Watch Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7URW88W466;
+				INFOPLIST_FILE = "PAW Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = YuePan.PAW.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.2;
 			};
 			name = Release;
 		};
@@ -529,6 +871,24 @@
 			buildConfigurations = (
 				7E9E4531221E4C090014723D /* Debug */,
 				7E9E4532221E4C090014723D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EFFB6C6226A4698009DEB7D /* Build configuration list for PBXNativeTarget "PAW Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EFFB6C4226A4698009DEB7D /* Debug */,
+				7EFFB6C5226A4698009DEB7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EFFB6C8226A4698009DEB7D /* Build configuration list for PBXNativeTarget "PAW Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EFFB6C2226A4698009DEB7D /* Debug */,
+				7EFFB6C3226A4698009DEB7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

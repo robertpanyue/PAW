@@ -9,11 +9,29 @@
 import Foundation
 import UIKit
 import FirebaseAuth
+import Firebase
+
 class ProfileViewController: UIViewController{
+  @IBOutlet weak var nameLabel: UILabel!
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.    
+    var ref: DatabaseReference!
+    ref = Database.database().reference()
+    
+    let userID = Auth.auth().currentUser?.uid
+    ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+      // Get user value
+      let value = snapshot.value as? NSDictionary
+      let firstname = value?["firstName"] as? String ?? ""
+      let lastname = value?["firstName"] as? String ?? ""
+      self.nameLabel.text = firstname + lastname
+
+    }) { (error) in
+      print(error.localizedDescription)
+    }
   }
+  
   
   @IBAction func logout(_ sender: Any) {
     do {
